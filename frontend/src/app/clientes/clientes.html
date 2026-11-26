@@ -1,0 +1,53 @@
+<h2>Clientes</h2>
+
+<div class="alert alert-success" *ngIf="mensaje">{{ mensaje }}</div>
+
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <div class="mb-3">
+    <input formControlName="razon_social" class="form-control" placeholder="Razón social" />
+  </div>
+  <div class="mb-3">
+    <input formControlName="documento_identificacion" class="form-control" placeholder="Documento de identidad" />
+  </div>
+  <div class="mb-3">
+    <input formControlName="direccion" class="form-control" placeholder="Dirección" />
+  </div>
+  <div class="mb-3">
+    <input formControlName="telefono" class="form-control" placeholder="Teléfono" />
+  </div>
+  <div class="mb-3">
+    <input formControlName="correo" class="form-control" placeholder="Correo" />
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Razón social</th>
+      <th>Documento</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+      <th>Correo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (c of clientes; track c.id) {
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.razon_social }}</td>
+        <td>{{ c.documento_identificacion }}</td>
+        <td>{{ c.direccion }}</td>
+        <td>{{ c.telefono }}</td>
+        <td>{{ c.correo }}</td>
+        <td>
+          <button type="button" class="btn btn-sm btn-warning" (click)="editar(c)">Editar</button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="eliminar(c.id)">Eliminar</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
